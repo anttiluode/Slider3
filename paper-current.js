@@ -27,8 +27,8 @@ function sourceG(point,source){
     const gaussian=Math.exp(-.5*k*(d0*d0+d1*d1))*Math.sqrt(k);
     const theta=k*(s+v*x-.5*v*v*t);
     // G = conjugate(f_sys(X - i q)). Fourier coefficients c are conjugated.
-    const a=gaussian*(m.re*Math.cos(theta)+m.im*Math.sin(theta));
-    const b=gaussian*(m.re*Math.sin(theta)-m.im*Math.cos(theta));
+    const a=gaussian*(m.re*Math.cos(theta)-m.im*Math.sin(theta));
+    const b=-gaussian*(m.re*Math.sin(theta)+m.im*Math.cos(theta));
     r0+=a;i0+=b;r1+=v*a;i1+=v*b;
   }
   return [[r0,i0],[r1,i1]];
