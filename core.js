@@ -19,14 +19,14 @@ for(let a=0;a<M;a++)for(let b=0;b<M;b++){
 const WAVES=[
   [4,0],[0,4],[3,3],[-3,3],[5,1],[1,5]
 ];
-const cases=['single','locked','scrambled'];
+const cases=['single','locked','scrambled2','scrambled'];
 function hash(seed,a,b){let x=(seed ^ Math.imul((a+1),0x9e3779b1) ^ Math.imul((b+1),0x85ebca77))>>>0;x^=x>>>16;x=Math.imul(x,0x7feb352d);x^=x>>>15;x=Math.imul(x,0x846ca68b);x^=x>>>16;return (x>>>0)/4294967296;}
 function getModes(kind,seed=20261027,frame=0,jitter=1){
   if(!cases.includes(kind))throw Error('Unknown signal kind '+kind);
-  const count=kind==='single'?1:kind==='locked'?2:6, amp=1/Math.sqrt(count);
+  const count=kind==='single'?1:(kind==='locked'||kind==='scrambled2')?2:6, amp=1/Math.sqrt(count);
   return WAVES.slice(0,count).map(([kx,ky],i)=>{
     const k=Math.hypot(kx,ky),randomPhase=(2*hash(seed,i,frame)-1)*Math.PI;
-    return {kx,ky,k,vx:kx/k,vy:ky/k,amp,phase:kind==='scrambled'?jitter*randomPhase:0};
+    return {kx,ky,k,vx:kx/k,vy:ky/k,amp,phase:kind.startsWith('scrambled')?jitter*randomPhase:0};
   });
 }
 function toneAt(modes,x,y,t){
