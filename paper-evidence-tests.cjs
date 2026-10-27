@@ -4,7 +4,7 @@ require('./paper-current.js');require('./paper-planar.js');
 const E=require('./paper-evidence.js');
 const P=require('./paper-planar.js');
 const s=P.solve(2200),a=E.comparisons(.75,s);
-assert.equal(a.measurements.spectrum.distance,0);
+assert.ok(a.measurements.spectrum.distance<1e-14,'spectrum is phase-blind up to floating-point roundoff');
 for(const name of ['delay','coherentIntensity','lifted','planar']){
  assert.ok(a.measurements[name].distance>1e-4,name+' failed phase response');
 }
