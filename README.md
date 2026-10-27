@@ -4,7 +4,7 @@
 
 ![Slider3 experiment is rendered interactively in the browser; no screenshot required](https://img.shields.io/badge/Experiment-4%20energy--matched%20wave%20conditions-79dacb)
 
-A direct follow-up to the original **Slider2 enhanced audio/noise instrument** (user-provided \`slider2(8).py\`, which used a VB-Audio cable loop, swept sine frequency, noise injection and a three-buffer 3D phase-space scatter). The new repo is an **independent synthetic experiment**, deliberately not a drop-in PyAudio replacement.
+A direct follow-up to the original **Slider2 enhanced audio/noise instrument** (user-provided `slider2(8).py`, which used a VB-Audio cable loop, swept sine frequency, noise injection and a three-buffer 3D phase-space scatter). The new repo is an **independent synthetic experiment**, deliberately not a drop-in PyAudio replacement.
 
 ### Why it exists
 
@@ -34,9 +34,9 @@ This code **does not reproduce** the paper's quaternionic/Friedrichs divergence-
 
 ### Installation
 
-The live GitHub Pages site runs entirely in your browser. To run it offline, download the repo and start a static server with \`python -m http.server 8000\` then open \`http://localhost:8000\`.
+The live GitHub Pages site runs entirely in your browser. To run it offline, download the repo and start a static server with `python -m http.server 8000` then open `http://localhost:8000`.
 
-Run numerical controls with \`node tests.cjs\` (Node 22). The GitHub workflow verifies physical power equality, phase preservation, deterministic random phases, disk boundary conditions, elliptic-solver residual, and repeat-map change before deploying Pages.
+Run numerical controls with `node tests.cjs` (Node 22). The GitHub workflow verifies physical power equality, phase preservation, deterministic random phases, disk boundary conditions, elliptic-solver residual, and repeat-map change before deploying Pages.
 
 ### Related research
 
