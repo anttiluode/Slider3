@@ -1,7 +1,7 @@
 # Slider3 research note — an interference microscope, not a quantum computer
 
 **Date:** October 27, 2026  
-**Origin:** user-provided older \`slider2(8).py\` screenshot and source, running an actual VB-Audio virtual audio-cable loop with frequency sweep/noise injection and a Matplotlib 3D scatter display of the three most recent audio buffers. Slider3 does **not** require PyAudio, VB-Cable, or a GPU. Its current source is a separate, reproducible two-dimensional **synthetic** wave experiment in a browser.
+**Origin:** user-provided older `slider2(8).py` screenshot and source, running an actual VB-Audio virtual audio-cable loop with frequency sweep/noise injection and a Matplotlib 3D scatter display of the three most recent audio buffers. Slider3 does **not** require PyAudio, VB-Cable, or a GPU. Its current source is a separate, reproducible two-dimensional **synthetic** wave experiment in a browser.
 
 [Live instrument](https://anttiluode.github.io/Slider3/) · [Source](core.js) · [Numerical guardrails](tests.cjs) · [OpenAI October 25 paper](https://github.com/openai/math/blob/main/preprints/Local-smoothing-for-the-Euclidean-wave-equation-October-25-2026/paper.pdf)
 
@@ -102,14 +102,14 @@ Freeze signal generators, source-vs-test splits, sensor budgets, number of modes
 ### Run locally
 
 Any static web server:
-\`\`\`bash
+```bash
 python -m http.server 8000
-\`\`\`
-Then browse to http://localhost:8000/. The Web Worker requires a local HTTP server rather than directly opening the file as \`file://\`.
+```
+Then browse to http://localhost:8000/. The Web Worker requires a local HTTP server rather than directly opening the file as `file://`.
 
 For numerical checks:
-\`\`\`bash
+```bash
 node tests.cjs
-\`\`\`
+```
 
 No dependencies, cloud APIs, GPU, local audio device permissions, or server inference are needed.
