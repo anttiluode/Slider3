@@ -61,6 +61,23 @@ F(X)=\frac12\int_D v(X,W)\mu(X,W)\,dW.
 \]
 This is quartic under common amplitude scaling. We compare dimensionless spatial **peak/mean** rather than raw total energy. It may simply smooth the density and make nicer pictures.
 
+## Initial reproducible numerical receipt
+
+Node tests at seed 34, frame 0, full scrambling, and 100 disk Jacobi iterations:
+
+| Condition | Mean-square wave power | Auxiliary potential peak/mean | Relative PDE residual |
+|---|---:|---:|---:|
+| Single mode | 0.500000000 | 1.000 | 0.000155 |
+| Two phase-locked orthogonal modes | 0.500000000 | 1.161 | 0.000219 |
+| Same two modes, random phases | 0.500000000 | 1.161 | 0.000219 |
+| Six scrambled modes | 0.500000000 | 4.683 | 0.000196 |
+
+The same-two-mode locked and scrambled cases differ by a spatial translation of their interference fringes on the torus, so a peak/mean concentration metric is unchanged despite scrambled phases. The locked pattern persists across observations (spatial correlation 1.000); six independently phase-scrambled components change their pattern (observed initial paired-map correlation approximately 0.146). The matched two-scrambled case also changes its location while retaining the same concentration, verified numerically.
+
+**Important failure of the naive interpretation:** the six scrambled waves produce a *larger* instantaneous potential contrast than the two phase-locked waves. A deep focus potential is therefore **not evidence of enduring coherence or a useful learning signal**. The experiment demonstrates meaningful energy-matched differences in instantaneous geometry and reveals why temporal tests and simpler phase/power controls are essential.
+
+---
+
 ## What you can actually measure
 
 - The old Slider2-style 3D orbit: correctly built at **sample-level delays** \(x(t-14),x(t-7),x(t)\) from a single virtual observation point. The original Python script selected the three most recent **4096-sample buffers**, not literal adjacent-sample delay coordinates. Slider3 uses a true scalar delay embedding for its synthetic trace.
