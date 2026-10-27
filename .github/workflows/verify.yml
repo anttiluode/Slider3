@@ -27,3 +27,5 @@ jobs:
           node paper-tests.cjs
           node --check paper-evidence.js
           node paper-evidence-tests.cjs
+          node --check paper-worker.js
+          node --check paper-app.js
