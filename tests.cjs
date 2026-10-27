@@ -51,8 +51,10 @@ const moving=S.normalisedCorrelation(random0.focus,random1.focus);
 assert.ok(persistent>.9999,'phase-locked interference pattern must persist');
 const pairedPersistence=S.normalisedCorrelation(paired0.focus,paired1.focus);
 assert.ok(pairedPersistence<persistent-.01,'matched-direction scrambled pair should shift its pattern '+pairedPersistence);
+assert.equal(S.normalisedCorrelation(new Float32Array(16).fill(1),new Float32Array(16).fill(1)),1,'identical uniform field has stable repeat map');
+close(locked0.focusContrast,paired0.focusContrast,5e-5);
 assert.ok(moving<persistent-.01,'random phases must perturb pattern '+moving);
-console.log('Frame repeat: locked persistence='+persistent.toFixed(6)+
+console.log('Frame repeat: locked='+persistent.toFixed(6)+', matched-scrambled='+pairedPersistence.toFixed(6)+
   ', scrambled persistence='+moving.toFixed(6)+' PASS');
 const t=S.trace('locked',34,1,400);
 assert.equal(t.length,400);
