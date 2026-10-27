@@ -29,7 +29,7 @@ Phase-scrambling uses seeded deterministic pseudorandom phases; it does not emul
 For every point X and an interior node W of a 9×9 auxiliary Dirichlet disk, each directional mode receives a Gaussian-like positive angular weight
 
 \[
-g_j(W)=\sqrt{|k_j|}\exp[-(\rho |k_j|/2)|W-\widehat k_j|^2],\qquad \rho=4.
+g_j(W)=\sqrt{|k_j|}\exp[-(\rho |k_j|/2)|W-\widehat k_j|^2],\qquad \rho=1.5.
 \]
 
 Two *approximate* scalar polarization channels \(b_0,b_1\) are computed from the relative direction W and wave direction. The pointwise coherent density is
