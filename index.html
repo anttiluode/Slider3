@@ -21,9 +21,9 @@ button:focus-visible,input:focus-visible{outline:2px solid #f1ba78;outline-offse
 .actions{display:flex;gap:8px;flex-wrap:wrap}#status{font-size:13px;color:#bcd1df;min-height:27px;margin-top:10px}
 .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}
 .kpi strong{font-size:24px;display:block;font-variant-numeric:tabular-nums}.kpi p{font-size:12px;color:var(--muted);margin:5px 0 0}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:14px 0}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin:14px 0}
 .case{position:relative;min-width:0}.case .tag{font-size:12px;font-weight:750;color:var(--orange);letter-spacing:.05em}
-.case[data-case=locked] .tag{color:var(--mint)}.case[data-case=scrambled] .tag{color:var(--violet)}
+.case[data-case=locked] .tag{color:var(--mint)}.case[data-case=scrambled] .tag,.case[data-case=scrambled2] .tag{color:var(--violet)}
 .case p{font-size:13px;color:var(--muted);min-height:57px}
 .canvashead{font-size:12px;color:#b7ccdb;margin:10px 0 7px}
 canvas{width:100%;display:block;background:#0b1527;border-radius:9px;border:1px solid #2c4662}
@@ -38,7 +38,7 @@ table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:11px 8px;
 code{color:#efc398;white-space:normal}
 details{margin:10px 0;border-top:1px solid #344661;padding-top:12px}summary{cursor:pointer;color:#b4dcef;font-weight:680}
 footer{margin:22px 0 65px;color:#98adc3;font-size:12px}
-@media(max-width:1100px){.cards{grid-template-columns:1fr 1fr}.cards>:last-child{grid-column:1/-1}.controls{grid-template-columns:1fr 1fr}.bottom{grid-template-columns:1fr}}
+@media(max-width:1100px){.cards{grid-template-columns:1fr 1fr}.controls{grid-template-columns:1fr 1fr}.bottom{grid-template-columns:1fr}}
 @media(max-width:660px){.wrap{padding:0 12px}.panel{padding:15px}.cards,.kpis,.controls{grid-template-columns:1fr}.cards>:last-child{grid-column:auto}.case p{min-height:0}}
 </style>
 </head><body>
@@ -47,7 +47,7 @@ footer{margin:22px 0 65px;color:#98adc3;font-size:12px}
 <header>
 <div class="eyebrow">Slider2 → coherent waves → auxiliary disk · 2026</div>
 <h1>What is hiding <em>inside the same energy?</em></h1>
-<p class="lead">Your old Slider2 drew a three-dimensional orbit from recorded audio blocks. This successor compares <strong>one traveling tone</strong>, <strong>two phase-locked crossing waves</strong>, and <strong>six phase-scrambled waves</strong>—all with matched physical mean-square amplitude. Its new microscope preserves interference before squaring, then solves a screened auxiliary-disk potential.</p>
+<p class="lead">Your old Slider2 drew a three-dimensional orbit from recorded audio blocks. This successor compares <strong>one traveling tone</strong>, <strong>two phase-locked crossing waves</strong>, <strong>the same two directions with scrambled phases</strong>, and <strong>six phase-scrambled waves</strong>—all with matched physical mean-square amplitude. Its new microscope preserves interference before squaring, then solves a screened auxiliary-disk potential.</p>
 </header>
 <section class="panel">
 <div class="eyebrow">01 / set up the experiment</div><h2>Matched signal power, different relationships</h2>
@@ -75,7 +75,12 @@ footer{margin:22px 0 65px;color:#98adc3;font-size:12px}
   <div class="canvashead">Auxiliary focus-potential energy map</div><canvas class="heat" id="heat-locked" width="470" height="345"></canvas>
   <div class="metrics"><div><strong id="focus-locked">—</strong><span>Potential map peak / mean</span></div><div><strong id="persist-locked">—</strong><span>Next-frame pattern correlation</span></div></div>
  </article>
- <article class="panel case" data-case="scrambled"><span class="tag">C · SIX SCRAMBLED WAVES</span><h3>Uncorrelated phase mixtures</h3><p>Six directions change their relative phases across trials. Instantaneous interference remains, but its spatial pattern wanders.</p>
+ <article class="panel case" data-case="scrambled2"><span class="tag">C · MATCHED TWO-WAVE CONTROL</span><h3>Exactly the same two waves, randomized phases</h3><p>Same two directions, frequencies, amplitudes and power as B. Only relative phase stability changes between samples.</p>
+  <div class="canvashead">Slider2-style delayed-sample orbit</div><canvas class="orbit" id="orbit-scrambled2" width="470" height="275"></canvas>
+  <div class="canvashead">Auxiliary focus-potential energy map</div><canvas class="heat" id="heat-scrambled2" width="470" height="345"></canvas>
+  <div class="metrics"><div><strong id="focus-scrambled2">—</strong><span>Potential map peak / mean</span></div><div><strong id="persist-scrambled2">—</strong><span>Next-frame pattern correlation</span></div></div>
+ </article>
+ <article class="panel case" data-case="scrambled"><span class="tag">D · SIX SCRAMBLED WAVES</span><h3>Uncorrelated phase mixtures</h3><p>Six directions change their relative phases across trials. Instantaneous interference remains, but its spatial pattern wanders.</p>
   <div class="canvashead">Slider2-style delayed-sample orbit</div><canvas class="orbit" id="orbit-scrambled" width="470" height="275"></canvas>
   <div class="canvashead">Auxiliary focus-potential energy map</div><canvas class="heat" id="heat-scrambled" width="470" height="345"></canvas>
   <div class="metrics"><div><strong id="focus-scrambled">—</strong><span>Potential map peak / mean</span></div><div><strong id="persist-scrambled">—</strong><span>Next-frame pattern correlation</span></div></div>
