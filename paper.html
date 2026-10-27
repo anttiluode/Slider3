@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Faithful finite-mode OpenAI wave current and fixed-fiber planar Dirichlet operator against Fourier power, coherent intensity and delay-space controls.">
+<meta name="theme-color" content="#080e1d"><title>Slider3 · Inside the OpenAI Wave Proof</title>
+<style>
+:root{color-scheme:dark;--bg:#080e1d;--panel:#101f36;--edge:#344964;--ink:#e6f3ff;--muted:#b3c6d8;--mint:#7cdbc9;--amber:#f3bd85}
+*{box-sizing:border-box}body{margin:0;font:15px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:radial-gradient(ellipse at 20% 0%,#263d58,transparent 40%),#080e1d}a{color:#a0e5f5}.wrap{max-width:1280px;padding:0 20px;margin:auto}
+nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:13px;border-bottom:1px solid var(--edge);padding:21px 0;font-size:13px}nav strong{color:var(--mint);letter-spacing:.13em}
+nav .links{display:flex;gap:16px;flex-wrap:wrap}
+header{padding:43px 0 28px}h1{font-size:clamp(33px,5vw,57px);letter-spacing:-.055em;line-height:1.06;margin:12px 0 15px;max-width:920px}
+h1 em{font-style:normal;color:var(--amber)}h2{font-size:20px;letter-spacing:-.02em;margin:0 0 12px}
+p{margin:0 0 13px}.lead{font-size:17px;max-width:980px;color:#c2d6e3}.small{font-size:13px;color:var(--muted)}.eyebrow{font-size:11px;color:var(--mint);font-weight:770;letter-spacing:.14em}
+.panel{padding:22px;border:1px solid var(--edge);border-radius:15px;background:linear-gradient(140deg,#152c43ed,#0d1929ec);box-shadow:0 15px 50px #0002}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:16px 0}
+.brow{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.equation{font-family:ui-monospace,Consolas,monospace;color:#d0e6f1;font-size:13px;padding:12px;background:#091827;border-radius:8px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55}
+label{font-size:13px;font-weight:680}input{accent-color:var(--mint);width:100%}button{font:inherit;font-weight:740;padding:12px 18px;background:var(--mint);color:#071522;border:0;border-radius:9px;cursor:pointer}button:disabled{opacity:.45;cursor:progress}
+.status{color:#b9d0dd;background:#183146;border:1px solid #3a5f75;border-radius:9px;font-size:13px;padding:11px;margin-top:10px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:15px 0}.kpis strong{display:block;font-size:27px;font-variant-numeric:tabular-nums}.kpis span{color:var(--muted);font-size:12px}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}th,td{padding:12px 9px;text-align:left;border-bottom:1px solid #385065}th{font-size:12px;color:#a8becb}
+.canvas{display:block;width:100%;height:255px;background:#081827;border:1px solid #35536a;border-radius:9px}
+.key{font-size:12px;color:#accbd6;display:flex;gap:16px;flex-wrap:wrap;margin:8px 0}.key span:before{content:'';display:inline-block;width:11px;height:3px;vertical-align:middle;margin-right:6px;background:var(--mint)}.key .second:before{background:var(--amber)}
+.result{font-size:14px;color:#d4e6ec;line-height:1.65}.result strong{color:var(--amber)}
+.foot{margin:20px auto 70px;max-width:1050px}.foot li{margin-bottom:8px;color:#b6ccd9}
+@media(max-width:800px){.two,.kpis{grid-template-columns:1fr}.wrap{padding:0 12px}.panel{padding:16px}}
+</style></head>
+<body><div class="wrap"><nav><strong>SLIDER3 / THE ACTUAL WAVE CONSTRUCTION</strong>
+<div class="links"><a href="./">← Slider3's original microscope</a><a href="https://github.com/anttiluode/Slider3">GitHub</a><a href="PAPER_IMPLEMENTATION.md">Mathematical scope</a></div></nav>
+<header><div class="eyebrow">PAPER-GROUNDED EXPERIMENT · OCT 2026</div>
+<h1>Does the wave proof reveal <em>what ordinary measurements miss?</em></h1>
+<p class="lead">Now using two specific constructions from the October 25 OpenAI mathematics rather than an isotropic analogy: the seven-coordinate <strong>conserved Friedrichs wave-current tensor</strong> and the <strong>direction-dependent Appendix D Fourier disk operator</strong>, evaluated for finite plane-wave sums. Both retain interference. We compare them to Fourier magnitude, coherent field intensity and a three-delay virtual sensor.</p></header>
+<section class="panel">
+<div class="eyebrow">01 · change only the relative phase</div><h2>Same two wave modes. Exactly the same spectrum.</h2>
+<div class="brow"><label for="phase">Relative wave phase: <output id="phaseVal">1.20</output> radians</label><button id="run" disabled>Recompute comparison</button></div>
+<input type="range" id="phase" min="0" max="6.28" step=".02" value="1.20">
+<p class="small">This controlled comparison holds frequency components and coefficient magnitudes fixed. One waveform has phase 0; the other has the selected relative phase. That makes the Fourier power spectrum *identical by construction*. The original Scalar Slider3 synthetic system remains accessible from the back link.</p>
+<div class="status" id="status">Loading actual current and planar mathematics…</div>
+</section>
+<div class="kpis">
+<div class="panel"><div class="eyebrow">Free wave current</div><strong>7D</strong><span>Full lifted Gram tensor with numerically verified ∑∂ᵢBᵢⱼ=0.</span></div>
+<div class="panel"><div class="eyebrow">Appendix D disk</div><strong>k·e(W)</strong><span>Directional variable coefficient, not isotropic ΔX smoothing.</span></div>
+<div class="panel"><div class="eyebrow">Observation cost warning</div><strong>Not matched</strong><span>Paper operators use known full Fourier modes; the phase-space baseline uses just three scalar samples.</span></div>
+</div>
+<div class="two">
+ <section class="panel"><div class="eyebrow">02 · current.tex / Friedrichs flow</div><h2>A conserved interference-sensitive tensor</h2>
+ <div class="equation">B = Re ∑(Zₗ ⊗ conjugate(Zₗ))
+Zₗ = ∑ Gₐ Dₗₐ
+Dₗₐ = ∂wₗₐ + i (Cᵘwₗ)ₐ ∂Xᵘ</div>
+ <p class="small" style="margin-top:12px">We reproduce the actual finite-mode source, symmetric flux matrices, vector fields and full seven-coordinate Gram tensor. The displayed curve is its physical T-time component at a fixed auxiliary point, not a post-hoc arbitrary polarization.</p>
+ <canvas class="canvas" id="currentPlot" width="670" height="265"></canvas>
+ <div class="key"><span>Reference phase</span><span class="second">Shifted phase</span></div>
+ </section>
+ <section class="panel"><div class="eyebrow">03 · planar.tex / auxiliary potential</div><h2>The manuscript's directional disk operator</h2>
+ <div class="equation">4 |J(W)|² ΔW û(k,W)
+− 4 |k·e(W)|² û(k,W) = μ̂(k,W)
+û = 0 on the disk boundary</div>
+ <p class="small" style="margin-top:12px">We use the manuscript's e(W), J(W) and A⁰TT source on a fixed Q=0 fiber, separating zero and nonzero Fourier modes before the Dirichlet solve. The graph shows a local potential-coupled energy for that fiber slice, not the theorem's final integrated functional.</p>
+ <canvas class="canvas" id="planarPlot" width="670" height="265"></canvas>
+ <div class="key"><span>Reference phase</span><span class="second">Shifted phase</span></div>
+ </section>
+ <section class="panel"><div class="eyebrow">04 · ordinary, phase-aware control</div><h2>Ordinary coherent intensity</h2>
+ <p class="small">No lifted current or auxiliary PDE. Just the squared modulus of the complex wave field. It can also see phase interference when supplied the complex field.</p>
+ <canvas class="canvas" id="ordinaryPlot" width="670" height="265"></canvas>
+ <div class="key"><span>Reference phase</span><span class="second">Shifted phase</span></div>
+ </section>
+ <section class="panel"><div class="eyebrow">05 · the original Slider2 idea</div><h2>Three samples at one location</h2>
+ <p class="small">A phase-space measurement of the real signal at one fixed virtual sensor: u(t), u(t−δ), u(t−2δ). This uses vastly fewer observations than a full-field Fourier decomposition.</p>
+ <canvas class="canvas" id="delayPlot" width="670" height="265"></canvas>
+ <div class="key"><span>Reference delay vector</span><span class="second">Shifted delay vector</span></div>
+ </section>
+</div>
+<section class="panel"><div class="eyebrow">06 · what the controls actually demonstrate</div><h2>Can each measurement detect a change of relative phase?</h2>
+<div style="overflow:auto"><table><thead><tr><th>Representation</th><th>Relative difference, selected phase</th><th>Detections / 64 phase trials</th><th>Input available</th></tr></thead><tbody id="results"><tr><td colspan="4">Computing 64 seeded tests…</td></tr></tbody></table></div>
+<p class="small" style="margin-top:12px">The detection threshold is a numerical nonzero test (change &gt; 10⁻⁸), without added measurement noise. Not a classifier accuracy, inferential p-value or equal-cost comparison. All inputs are synthetic and known. No representation is credited with new information if ordinary complex intensity or three delays also detect the same change.</p>
+<div id="finding" class="status">Waiting for numerical comparison…</div>
+</section>
+<section class="panel foot">
+ <div class="eyebrow">Scope / mathematical honesty</div><h2>Faithful components, not a reproduced theorem</h2>
+ <p>These two components are implemented using the actual manuscript equations. What is <strong>not</strong> reproduced: the full spatial current regularization Jₕ, passive Q cutoff, integration over the entire complex fiber, the quaternionic cofactor energy estimate, the global local-smoothing bound, or a proof that any physical cavity can be queried more efficiently.</p>
+ <p>For the complete current, conservation and positive semidefiniteness are tested numerically on multiple coherent phase configurations. For the planar operator, disk boundary values, coefficient dependence on direction, and Fourier equation residuals are tested. The two examples use different finite mode scales suitable for their respective coordinate charts; they are not a single coupled reproduction of the complete proof.</p>
+ <p><strong>The question this page can answer:</strong> Can the paper-derived quantities distinguish coherent waves that have the same conventional power spectrum? <strong>Yes.</strong> Are they uniquely sensitive to such changes, or proven better than phase space, ordinary coherent intensity or much cheaper features? <strong>No.</strong> Those comparisons need a genuinely matched sensor/compute budget and a downstream prediction task.</p>
+ <p class="small"><a href="https://github.com/openai/math/blob/main/preprints/Local-smoothing-for-the-Euclidean-wave-equation-October-25-2026/paper.pdf">OpenAI paper</a> · <a href="https://github.com/anttiluode/Slider3/blob/main/paper-current.js">Current code</a> · <a href="https://github.com/anttiluode/Slider3/blob/main/paper-planar.js">Planar code</a> · <a href="https://github.com/anttiluode/Slider3/blob/main/paper-tests.cjs">Identity tests</a>.</p>
+</section></div>
+<script src="./paper-app.js"></script>
+</body></html>
