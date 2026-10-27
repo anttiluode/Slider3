@@ -4,7 +4,7 @@
 const $=id=>document.getElementById(id);
 const worker=new Worker('./worker.js');
 let data=null,working=false,updateQueued=false,serial=0;
-const names=['single','locked','scrambled'],labels={single:'Single tone',locked:'Locked crossing',scrambled:'Scrambled mixture'};
+const names=['single','locked','scrambled2','scrambled'],labels={single:'Single tone',locked:'Locked crossing',scrambled2:'Scrambled pair',scrambled:'Six-wave mixture'};
 function clearCanvas(canvas,text){
   const ctx=canvas.getContext('2d');
   ctx.fillStyle='#0b1527';ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -31,17 +31,17 @@ function redrawOrbit(name,r){
     const x=T[i-14]/max,y=T[i-7]/max,z=T[i]/max;
     vec.push(project(x,y,z));
   }
-  ctx.strokeStyle=name==='locked'?'#7cdbc9':name==='scrambled'?'#bba9fa':'#f2b77b';
+  ctx.strokeStyle=name==='locked'?'#7cdbc9':name.startsWith('scrambled')?'#bba9fa':'#f2b77b';
   ctx.lineWidth=1.5;ctx.globalAlpha=.75;ctx.beginPath();
   for(let i=0;i<vec.length;i++){
     if(i===0)ctx.moveTo(vec[i][0],vec[i][1]);
-    else if(i%25===0&&name==='scrambled')ctx.moveTo(vec[i][0],vec[i][1]);
+    else if(i%25===0&&name.startsWith('scrambled'))ctx.moveTo(vec[i][0],vec[i][1]);
     else ctx.lineTo(vec[i][0],vec[i][1]);
   }
   ctx.stroke();ctx.globalAlpha=1;
   for(let i=0;i<vec.length;i+=10){
     const [x,y]=vec[i];ctx.beginPath();ctx.arc(x,y,1.8,0,Math.PI*2);
-    ctx.fillStyle=name==='locked'?'#c2fff1':name==='scrambled'?'#d6c8ff':'#ffd0a0';ctx.fill();
+    ctx.fillStyle=name==='locked'?'#c2fff1':name.startsWith('scrambled')?'#d6c8ff':'#ffd0a0';ctx.fill();
   }
   ctx.font='12px system-ui';ctx.fillStyle='#9db6c8';
   ctx.fillText('x(t−14), x(t−7), x(t) — one virtual sensor',14,h-15);
