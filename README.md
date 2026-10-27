@@ -20,6 +20,14 @@ For each, view a true sample-delayed 3D orbit, the spatial auxiliary-potential h
 
 **[Full mathematics and provenance](METHOD.md)** · [Pure JS engine](core.js) · [Numerical tests](tests.cjs)
 
+### First numerical result: same power, different structure
+
+At equal **spatial mean-square real wave displacement = 0.5**, the potential peak-to-mean concentration is **1.000** for one wave, **1.161** for two locked waves, **1.161** for the same two waves with scrambled relative phases, and **4.683** for six scrambled waves.
+
+This is a **useful negative control**: an instantaneous potential peak does **not** uniquely identify temporally stable coherence. Six scrambled wave components produce the biggest local peak in this toy model; distinguishing stable phase relationships requires measuring repeatability across observations. The potential's advantage over cheaper coherence and power measures is still unproven.
+
+**Enable Pages once:** This fresh repository has a complete publishing workflow, but GitHub Pages currently returns 404 because the site isn't enabled. Open [Settings → Pages](https://github.com/anttiluode/Slider3/settings/pages), then choose **Build and deployment → Source → GitHub Actions**. You can also run locally using `python -m http.server 8000`.
+
 ### Boundary between inspiration and implementation
 
 This code **does not reproduce** the paper's quaternionic/Friedrichs divergence-free current or its direction-dependent variable-coefficient Appendix D operator. It uses approximate real polarization channels followed by an isotropic \((-Δ_W-\alpha Δ_X)^{-1}\) screened disk Green operator. It does *not* prove local smoothing or autonomous memory writing; it tests whether that architectural motif is computationally useful enough to explore.
