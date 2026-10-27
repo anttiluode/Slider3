@@ -22,3 +22,6 @@ jobs:
           node --check worker.js
           node --check app.js
           node tests.cjs
+          node --check paper-current.js
+          node --check paper-planar.js
+          node paper-tests.cjs
