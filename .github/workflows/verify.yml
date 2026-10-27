@@ -1,15 +1,13 @@
-name: Verify Slider3 physical controls and Pages
+name: Verify Slider3 physical and numerical controls
 on:
   push:
     branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
-  pages: write
-  id-token: write
 concurrency:
-  group: slider3-pages
-  cancel-in-progress: false
+  group: slider3-verify
+  cancel-in-progress: true
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -18,20 +16,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: |
+      - name: Check all JavaScript syntax and reproducible mathematics
+        run: |
           node --check core.js
-          node tests.cjs
           node --check worker.js
           node --check app.js
-      - name: Upload static site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-  deploy:
-    needs: verify
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-    steps:
-      - name: Deploy GitHub Pages
-        uses: actions/deploy-pages@v4
+          node tests.cjs
