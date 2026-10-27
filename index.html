@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080e1d">
+<meta name="description" content="Three energy-matched oscillating wave fields: a single tone, coherent interference, and phase-scrambled waves. An honest Appendix-D-inspired auxiliary disk potential versus standard controls.">
+<title>Slider3 · The Interference Microscope</title>
+<style>
+:root{color-scheme:dark;--bg:#080e1d;--pane:#121c32;--border:#344661;--fg:#e8f3ff;--muted:#9fb3cc;--mint:#7cdbc9;--orange:#f2b77b;--violet:#bba9fa}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 20% -15%,#253c5b,transparent 45%),radial-gradient(ellipse at 99% 0%,#282044,transparent 33%),var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}a{color:#9bdfff}
+.wrap{max-width:1450px;margin:auto;padding:0 20px}nav{border-bottom:1px solid #31405a;padding:18px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+nav strong{letter-spacing:.17em;color:var(--mint);font-size:12px}nav .links{display:flex;gap:17px;flex-wrap:wrap;font-size:13px}
+h1{font-size:clamp(34px,5.1vw,66px);line-height:1.06;letter-spacing:-.06em;max-width:940px;margin:10px 0 17px}h1 em{font-style:normal;color:var(--orange)}h2{font-size:21px;letter-spacing:-.025em;margin:4px 0 10px}h3{font-size:18px;letter-spacing:-.02em;margin:5px 0 10px}
+p{margin:0 0 13px}.lead{color:#bfd0e5;max-width:980px;font-size:17px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:.16em;color:var(--mint);text-transform:uppercase}
+header{padding:43px 0 26px}.panel{background:linear-gradient(135deg,#14233aef,#101a2dec);border:1px solid var(--border);border-radius:15px;padding:20px;box-shadow:0 16px 45px #0002}
+.controls{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:16px;align-items:end;margin-bottom:16px}
+label{display:block;font-weight:670;font-size:13px;color:#bfd5e3;margin:0 0 8px}input{width:100%;accent-color:var(--mint);font:inherit}input[type=number]{background:#1e2d45;color:var(--fg);border:1px solid #4a647d;border-radius:9px;padding:9px 10px}
+button{cursor:pointer;color:#0b1527;background:var(--mint);font-weight:800;font:inherit;border:0;border-radius:10px;padding:12px 16px}button:disabled{opacity:.4;cursor:progress}
+button.alt{color:var(--fg);background:#263b55;border:1px solid #50708b}
+button:focus-visible,input:focus-visible{outline:2px solid #f1ba78;outline-offset:3px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}#status{font-size:13px;color:#bcd1df;min-height:27px;margin-top:10px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}
+.kpi strong{font-size:24px;display:block;font-variant-numeric:tabular-nums}.kpi p{font-size:12px;color:var(--muted);margin:5px 0 0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:14px 0}
+.case{position:relative;min-width:0}.case .tag{font-size:12px;font-weight:750;color:var(--orange);letter-spacing:.05em}
+.case[data-case=locked] .tag{color:var(--mint)}.case[data-case=scrambled] .tag{color:var(--violet)}
+.case p{font-size:13px;color:var(--muted);min-height:57px}
+.canvashead{font-size:12px;color:#b7ccdb;margin:10px 0 7px}
+canvas{width:100%;display:block;background:#0b1527;border-radius:9px;border:1px solid #2c4662}
+.heat{aspect-ratio:1.35}.orbit{aspect-ratio:1.6}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:13px 0 0}
+.metrics>div{padding:9px;border-radius:9px;background:#192a40}
+.metrics strong{font-size:20px;display:block;font-variant-numeric:tabular-nums}
+.metrics span{font-size:11px;color:#adc1d2}
+.note{color:var(--muted);font-size:12px}
+.bottom{display:grid;grid-template-columns:1.1fr .9fr;gap:15px;margin:17px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:11px 8px;text-align:left;border-bottom:1px solid #34445d;font-variant-numeric:tabular-nums}th{font-size:12px;color:#aabed3}
+code{color:#efc398;white-space:normal}
+details{margin:10px 0;border-top:1px solid #344661;padding-top:12px}summary{cursor:pointer;color:#b4dcef;font-weight:680}
+footer{margin:22px 0 65px;color:#98adc3;font-size:12px}
+@media(max-width:1100px){.cards{grid-template-columns:1fr 1fr}.cards>:last-child{grid-column:1/-1}.controls{grid-template-columns:1fr 1fr}.bottom{grid-template-columns:1fr}}
+@media(max-width:660px){.wrap{padding:0 12px}.panel{padding:15px}.cards,.kpis,.controls{grid-template-columns:1fr}.cards>:last-child{grid-column:auto}.case p{min-height:0}}
+</style>
+</head><body>
+<div class="wrap">
+<nav><strong>SLIDER3 / INTERFERENCE MICROSCOPE</strong><div class="links"><a href="https://github.com/anttiluode/Slider3">Source and tests</a><a href="https://github.com/anttiluode/ResonantNeuron">ResonantNeuron</a><a href="https://github.com/anttiluode/ResonanceAsControlledMethod">Cavity lab</a></div></nav>
+<header>
+<div class="eyebrow">Slider2 → coherent waves → auxiliary disk · 2026</div>
+<h1>What is hiding <em>inside the same energy?</em></h1>
+<p class="lead">Your old Slider2 drew a three-dimensional orbit from recorded audio blocks. This successor compares <strong>one traveling tone</strong>, <strong>two phase-locked crossing waves</strong>, and <strong>six phase-scrambled waves</strong>—all with matched physical mean-square amplitude. Its new microscope preserves interference before squaring, then solves a screened auxiliary-disk potential.</p>
+</header>
+<section class="panel">
+<div class="eyebrow">01 / set up the experiment</div><h2>Matched signal power, different relationships</h2>
+<div class="controls">
+  <div><label for="frame">Phase sample <output id="frameOut">0</output></label><input type="range" id="frame" min="0" max="30" step="1" value="0"></div>
+  <div><label for="jitter">Phase scrambling <output id="jitterOut">100%</output></label><input type="range" id="jitter" min="0" max="1" step=".05" value="1"></div>
+  <div><label for="seed">Reproducible random seed</label><input id="seed" type="number" value="20261027" min="1" max="4294967295"></div>
+  <div class="actions"><button id="run" disabled>Compare waves</button><button id="next" class="alt" disabled>Next phases</button><button id="export" class="alt" disabled>Export JSON</button></div>
+</div>
+<div id="status" role="status">Loading physics engine…</div>
+</section>
+<div class="kpis">
+ <div class="panel kpi"><div class="eyebrow">Source control</div><strong>0.500</strong><p>Target spatial mean-square displacement of every signal; equality verified numerically, not a matched acoustic loudness at a single listening point.</p></div>
+ <div class="panel kpi"><div class="eyebrow">Coherent construction</div><strong>Sum → square</strong><p>Each polarization channel adds complex wave amplitudes before measuring energy; diagonal-only power is the phase-blind control.</p></div>
+ <div class="panel kpi"><div class="eyebrow">Auxiliary solver</div><strong>32² × disk</strong><p>A positive Green-potential surrogate on a nine-by-nine polarization grid. Not the exact OpenAI conserved tensor.</p></div>
+</div>
+<section class="cards" aria-label="Three equal-energy wave experiments">
+ <article class="panel case" data-case="single"><span class="tag">A · ONE TRAVELING WAVE</span><h3>One coherent tone</h3><p>One spatial direction, one phase. A perfectly predictable orbit with no between-mode interference.</p>
+  <div class="canvashead">Slider2-style delayed-sample orbit</div><canvas class="orbit" id="orbit-single" width="470" height="275"></canvas>
+  <div class="canvashead">Auxiliary focus-potential energy map</div><canvas class="heat" id="heat-single" width="470" height="345"></canvas>
+  <div class="metrics"><div><strong id="focus-single">—</strong><span>Potential map peak / mean</span></div><div><strong id="persist-single">—</strong><span>Next-frame pattern correlation</span></div></div>
+ </article>
+ <article class="panel case" data-case="locked"><span class="tag">B · TWO LOCKED WAVES</span><h3>Phase-locked crossing</h3><p>Two different directions keep a reproducible interference pattern. A fixed relationship despite the same total power.</p>
+  <div class="canvashead">Slider2-style delayed-sample orbit</div><canvas class="orbit" id="orbit-locked" width="470" height="275"></canvas>
+  <div class="canvashead">Auxiliary focus-potential energy map</div><canvas class="heat" id="heat-locked" width="470" height="345"></canvas>
+  <div class="metrics"><div><strong id="focus-locked">—</strong><span>Potential map peak / mean</span></div><div><strong id="persist-locked">—</strong><span>Next-frame pattern correlation</span></div></div>
+ </article>
+ <article class="panel case" data-case="scrambled"><span class="tag">C · SIX SCRAMBLED WAVES</span><h3>Uncorrelated phase mixtures</h3><p>Six directions change their relative phases across trials. Instantaneous interference remains, but its spatial pattern wanders.</p>
+  <div class="canvashead">Slider2-style delayed-sample orbit</div><canvas class="orbit" id="orbit-scrambled" width="470" height="275"></canvas>
+  <div class="canvashead">Auxiliary focus-potential energy map</div><canvas class="heat" id="heat-scrambled" width="470" height="345"></canvas>
+  <div class="metrics"><div><strong id="focus-scrambled">—</strong><span>Potential map peak / mean</span></div><div><strong id="persist-scrambled">—</strong><span>Next-frame pattern correlation</span></div></div>
+ </article>
+</section>
+<div class="bottom">
+ <section class="panel">
+   <div class="eyebrow">02 / see whether the microscope adds information</div><h2>Measured controls, not a victory proclamation</h2>
+   <div style="overflow:auto"><table><thead><tr><th>Physical condition</th><th>Power</th><th>Raw-lift contrast</th><th>Potential contrast</th><th>Phase cross-terms</th><th>Repeat correlation</th></tr></thead><tbody id="table"><tr><td colspan="6" class="note">Measurements will appear when the simulations finish.</td></tr></tbody></table></div>
+   <p class="note" style="margin-top:13px">Power is the spatial mean of the squared real field. Raw-lift contrast is the peak-to-mean of coherent directional density summed over disk. Potential contrast uses the disk Green solve. “Phase cross-terms” means the relative absolute difference between coherent and diagonal-only densities; it is not a learned classification score. Repetition measures spatial-map correlation between two independent phase samples.</p>
+ </section>
+ <section class="panel">
+   <div class="eyebrow">03 / physical and mathematical provenance</div><h2>Where we follow the paper—and where we don't</h2>
+   <p>The OpenAI manuscript constructs a positive, conserved lifted wave-current tensor in additional coordinates, then uses a planar auxiliary Dirichlet potential to obtain bounds. Slider3 borrows the <strong>coherent summation, a polarization disk, and a positive screened inverse</strong>. Our finite-difference surrogate uses an <em>isotropic</em> spatial Laplacian, not the paper's directional, variable-coefficient geometry. Its channels are approximate, and no conservation theorem is claimed.</p>
+   <p>The three fields are synthetic periodic <strong>2D spatial waves</strong>—not quantum dynamics or microphone recordings. Slider2's actual cable-and-speaker loop remains an earlier, distinct hardware experiment.</p>
+   <details><summary>What would count as a useful new result?</summary><p class="note">Not merely prettier interference images. The auxiliary potential would have to improve a predeclared task—say predicting which source produced an unknown noisy field, or tracking stable coherent relationships—over raw signal energy, standard phase coherence, a coherent density without the potential, and simpler spatial smoothing, at comparable observation and computation costs. This first page tests mathematical feasibility and exposes those controls; it does not yet demonstrate a neural learning rule.</p></details>
+   <p class="note"><a href="https://github.com/openai/math/blob/main/preprints/Local-smoothing-for-the-Euclidean-wave-equation-October-25-2026/paper.pdf">OpenAI wave manuscript (October 25, 2026)</a> · <a href="https://github.com/anttiluode/Slider3/blob/main/METHOD.md">Derivation, guardrails and next experiment</a></p>
+ </section>
+</div>
+<footer>Slider3 is an independent browser experiment based on the ideas from your <code>slider2(8).py</code> instrument. It is an engineering analogy, not an implementation or proof of the original local-smoothing theorem. Source and numerical tests are open.</footer>
+</div>
+<script src="./core.js"></script><script src="./app.js"></script>
+</body></html>
