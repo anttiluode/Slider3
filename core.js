@@ -151,7 +151,12 @@ function normalisedCorrelation(a,b){
     const x=a[i]-ma,y=b[i]-mb;
     num+=x*y;da+=x*x;db+=y*y;
   }
-  return num/(Math.sqrt(da*db)+1e-20);
+  // A uniform map is perfectly stable if the next map is also uniform.
+  // Pearson correlation is undefined at zero variance; report this special
+  // case as identical/stable rather than a spurious zero.
+  if(da<1e-20&&db<1e-20)return 1;
+  if(da<1e-20||db<1e-20)return 0;
+  return num/Math.sqrt(da*db);
 }
 function trace(kind,seed=20261027,jitter=1,count=380){
   const xx=2*Math.PI*7/N,yy=2*Math.PI*9/N;
