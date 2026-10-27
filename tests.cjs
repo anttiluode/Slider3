@@ -2,11 +2,11 @@
 'use strict';
 const assert=require('node:assert/strict'),S=require('./core.js');
 function close(a,b,t=1e-8){assert.ok(Math.abs(a-b)<t,String(a)+' != '+String(b));}
-assert.deepEqual(S.cases,['single','locked','scrambled']);
+assert.deepEqual(S.cases,['single','locked','scrambled2','scrambled']);
 assert.ok(S.DISK.length>=35&&S.DISK.length<70);
 for(const c of S.cases){
   const modes=S.getModes(c,20261027,0);
-  assert.equal(modes.length,c==='single'?1:c==='locked'?2:6);
+  assert.equal(modes.length,c==='single'?1:(c==='locked'||c==='scrambled2')?2:6);
   close(modes.reduce((a,m)=>a+m.amp*m.amp,0),1);
   close(S.meanSquare(modes,.37),.5,1e-9);
   for(const m of modes)assert.ok(m.k>0&&Number.isFinite(m.phase));
@@ -20,6 +20,10 @@ const locked=S.synthesise('locked',34,0,1);
 let phaseEvidence=0;
 for(let i=0;i<locked.mu.length;i++)phaseEvidence=Math.max(phaseEvidence,Math.abs(locked.mu[i]-locked.incoherent[i]));
 assert.ok(phaseEvidence>.1,'coherent multipath cross terms were erased');
+const matched=S.synthesise('scrambled2',34,0,1);
+close(matched.power,.5,1e-7);
+assert.deepEqual(matched.modes.map(x=>[x.kx,x.ky,x.amp]),locked.modes.map(x=>[x.kx,x.ky,x.amp]));
+assert.notDeepEqual(matched.mu,locked.mu);
 const scrambled=S.synthesise('scrambled',34,0,1);
 const scrambledAgain=S.synthesise('scrambled',34,0,1);
 assert.deepEqual(scrambled.mu,scrambledAgain.mu,'same seed must be deterministic');
@@ -39,11 +43,14 @@ for(const c of S.cases){
   console.log('DISK',c,'focus contrast='+r.focusContrast.toFixed(3),
     'PDE residual='+r.residual.toExponential(2),'physical power='+r.power.toFixed(9));
 }
+const paired0=S.runOne('scrambled2',34,0,1,100),paired1=S.runOne('scrambled2',34,1,1,100);
 const locked0=S.runOne('locked',34,0,1,100),locked1=S.runOne('locked',34,1,1,100);
 const random0=S.runOne('scrambled',34,0,1,100),random1=S.runOne('scrambled',34,1,1,100);
 const persistent=S.normalisedCorrelation(locked0.focus,locked1.focus);
 const moving=S.normalisedCorrelation(random0.focus,random1.focus);
 assert.ok(persistent>.9999,'phase-locked interference pattern must persist');
+const pairedPersistence=S.normalisedCorrelation(paired0.focus,paired1.focus);
+assert.ok(pairedPersistence<persistent-.01,'matched-direction scrambled pair should shift its pattern '+pairedPersistence);
 assert.ok(moving<persistent-.01,'random phases must perturb pattern '+moving);
 console.log('Frame repeat: locked persistence='+persistent.toFixed(6)+
   ', scrambled persistence='+moving.toFixed(6)+' PASS');
