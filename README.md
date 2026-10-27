@@ -20,6 +20,12 @@ For each, view a true sample-delayed 3D orbit, the spatial auxiliary-potential h
 
 **[Full mathematics and provenance](METHOD.md)** · [Pure JS engine](core.js) · [Numerical tests](tests.cjs)
 
+### New: exact finite-wave current and directional Appendix D operator
+
+**[Open the paper-grounded experimental comparison](https://anttiluode.github.io/Slider3/paper.html)** · [Mathematical scope and numeric receipt](PAPER_IMPLEMENTATION.md) · [Conserved current code](paper-current.js) · [Direction-dependent planar solver](paper-planar.js).
+
+Unlike the earlier isotropic disk surrogate, this follow-up implements the actual n=2 finite-wave Friedrichs lifted tensor (a full 7×7 Gram current, checking every column's divergence) and the manuscript's direction-dependent planar Fourier disk equation on a fixed Q=0 fiber. The 64 controlled phase-shift trials found **0/64** detectable changes for Fourier magnitudes, but **64/64** for the paper current and planar potential **and also** for ordinary coherent intensity and a three-delay scalar sensor. The math captures coherent relationships, but it has not demonstrated a unique information or cost advantage over a phase-aware baseline. These are tested parts of the proof, **not** a reproduced local-smoothing theorem.
+
 ### First numerical result: same power, different structure
 
 At equal **spatial mean-square real wave displacement = 0.5**, the potential peak-to-mean concentration is **1.000** for one wave, **1.161** for two locked waves, **1.161** for the same two waves with scrambled relative phases, and **4.683** for six scrambled waves.
