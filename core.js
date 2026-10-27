@@ -9,7 +9,7 @@
 'use strict';
 const N=32,M=9,SZ=N*N,WS=M*M,HW=2/(M-1),DX=2*Math.PI/N;
 const WW=1/(HW*HW),XX=0.075/(DX*DX);
-const ITER=100,RHO=4.0;
+const ITER=100,RHO=1.5;
 const DISK=[],DISKFLAG=new Uint8Array(WS),wx=new Float64Array(WS),wy=new Float64Array(WS);
 for(let a=0;a<M;a++)for(let b=0;b<M;b++){
   const q=a*M+b,xx=-1+a*HW,yy=-1+b*HW;
